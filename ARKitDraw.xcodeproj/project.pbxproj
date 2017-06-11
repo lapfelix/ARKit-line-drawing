@@ -316,6 +316,7 @@
 				DC98696A1EE8D7BE007DDA39 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
