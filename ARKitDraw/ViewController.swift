@@ -55,28 +55,35 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
     // MARK: - ARSCNViewDelegate
     
+    @IBOutlet weak var button: UIButton!
+    
     func renderer(_ renderer: SCNSceneRenderer, willRenderScene scene: SCNScene, atTime time: TimeInterval) {
-        // Doing this here is probably not the smartest thing
+        
         guard let pointOfView = sceneView.pointOfView else { return }
-        if let previousPoint = previousPoint {
-            let line = lineFrom(vector: previousPoint, toVector: pointOfView.position)
-            let lineNode = SCNNode(geometry: line)
-            sceneView.scene.rootNode.addChildNode(lineNode)
+        
+        guard let currentFrame = sceneView.session.currentFrame else { return }
+        
+        let mat = SCNMatrix4FromMat4(currentFrame.camera.transform)
+        let dir = SCNVector3(-1 * mat.m31, -1 * mat.m32, -1 * mat.m33)
+        let currentPosition = pointOfView.position + (dir * 0.1)
+        
+        if button!.isHighlighted {
+            if let previousPoint = previousPoint {
+                let line = lineFrom(vector: previousPoint, toVector: currentPosition)
+                let lineNode = SCNNode(geometry: line)
+                sceneView.scene.rootNode.addChildNode(lineNode)
+            }
         }
-        
-        previousPoint = pointOfView.position
+        previousPoint = currentPosition
         glLineWidth(20)
-        
     }
     
     func session(_ session: ARSession, didFailWithError error: Error) {
         // Present an error message to the user
-        
     }
     
     func sessionWasInterrupted(_ session: ARSession) {
         // Inform the user that the session has been interrupted, for example, by presenting an overlay
-        
     }
     
     func sessionInterruptionEnded(_ session: ARSession) {
