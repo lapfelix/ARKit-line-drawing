@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		43A32DF91EF0672C004C32DB /* SCNVector3Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A32DF81EF0670B004C32DB /* SCNVector3Extensions.swift */; };
 		DC9869581EE8D7BE007DDA39 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9869571EE8D7BE007DDA39 /* AppDelegate.swift */; };
 		DC98695A1EE8D7BE007DDA39 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = DC9869591EE8D7BE007DDA39 /* art.scnassets */; };
 		DC98695C1EE8D7BE007DDA39 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC98695B1EE8D7BE007DDA39 /* ViewController.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		43A32DF81EF0670B004C32DB /* SCNVector3Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCNVector3Extensions.swift; sourceTree = "<group>"; };
 		DC9869541EE8D7BE007DDA39 /* ARKitDraw.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARKitDraw.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC9869571EE8D7BE007DDA39 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DC9869591EE8D7BE007DDA39 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 				DC9869571EE8D7BE007DDA39 /* AppDelegate.swift */,
 				DC9869591EE8D7BE007DDA39 /* art.scnassets */,
 				DC98695B1EE8D7BE007DDA39 /* ViewController.swift */,
+				43A32DF81EF0670B004C32DB /* SCNVector3Extensions.swift */,
 				DC98695D1EE8D7BE007DDA39 /* Main.storyboard */,
 				DC9869601EE8D7BE007DDA39 /* Assets.xcassets */,
 				DC9869621EE8D7BE007DDA39 /* LaunchScreen.storyboard */,
@@ -139,6 +142,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43A32DF91EF0672C004C32DB /* SCNVector3Extensions.swift in Sources */,
 				DC98695C1EE8D7BE007DDA39 /* ViewController.swift in Sources */,
 				DC9869581EE8D7BE007DDA39 /* AppDelegate.swift in Sources */,
 			);
