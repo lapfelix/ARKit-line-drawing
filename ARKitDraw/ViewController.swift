@@ -14,6 +14,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
     @IBOutlet var sceneView: ARSCNView!
     var previousPoint: SCNVector3?
+    @IBOutlet weak var button: UIButton!
+    var lineColor = UIColor.white
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,8 +57,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
     // MARK: - ARSCNViewDelegate
     
-    @IBOutlet weak var button: UIButton!
-    
     func renderer(_ renderer: SCNSceneRenderer, willRenderScene scene: SCNScene, atTime time: TimeInterval) {
         
         guard let pointOfView = sceneView.pointOfView else { return }
@@ -71,6 +71,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             if let previousPoint = previousPoint {
                 let line = lineFrom(vector: previousPoint, toVector: currentPosition)
                 let lineNode = SCNNode(geometry: line)
+                lineNode.geometry?.firstMaterial?.diffuse.contents = lineColor
                 sceneView.scene.rootNode.addChildNode(lineNode)
             }
         }
@@ -91,7 +92,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
     }
     
- func lineFrom(vector vector1: SCNVector3, toVector vector2: SCNVector3) -> SCNGeometry {
+    func lineFrom(vector vector1: SCNVector3, toVector vector2: SCNVector3) -> SCNGeometry {
+        
         let indices: [Int32] = [0, 1]
         
         let source = SCNGeometrySource(vertices: [vector1, vector2])
