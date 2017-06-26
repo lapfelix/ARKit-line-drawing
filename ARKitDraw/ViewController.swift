@@ -61,9 +61,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         guard let pointOfView = sceneView.pointOfView else { return }
         
-        guard let currentFrame = sceneView.session.currentFrame else { return }
-        
-        let mat = SCNMatrix4FromMat4(currentFrame.camera.transform)
+        let mat = pointOfView.transform
         let dir = SCNVector3(-1 * mat.m31, -1 * mat.m32, -1 * mat.m33)
         let currentPosition = pointOfView.position + (dir * 0.1)
         
