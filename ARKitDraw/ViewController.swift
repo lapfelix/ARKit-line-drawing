@@ -17,6 +17,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     @IBOutlet weak var button: UIButton!
     var lineColor = UIColor.white
     
+    var buttonHighlighted = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -37,7 +39,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         super.viewWillAppear(animated)
         
         // Create a session configuration
-        let configuration = ARWorldTrackingSessionConfiguration()
+        let configuration = ARWorldTrackingConfiguration()
         
         // Run the view's session
         sceneView.session.run(configuration)
@@ -56,7 +58,11 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
 
     // MARK: - ARSCNViewDelegate
-    
+    func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
+        DispatchQueue.main.async {
+            self.buttonHighlighted = self.button.isHighlighted
+        }
+    }
     func renderer(_ renderer: SCNSceneRenderer, willRenderScene scene: SCNScene, atTime time: TimeInterval) {
         
         guard let pointOfView = sceneView.pointOfView else { return }
@@ -65,7 +71,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         let dir = SCNVector3(-1 * mat.m31, -1 * mat.m32, -1 * mat.m33)
         let currentPosition = pointOfView.position + (dir * 0.1)
         
-        if button!.isHighlighted {
+        if buttonHighlighted {
             if let previousPoint = previousPoint {
                 let line = lineFrom(vector: previousPoint, toVector: currentPosition)
                 let lineNode = SCNNode(geometry: line)
